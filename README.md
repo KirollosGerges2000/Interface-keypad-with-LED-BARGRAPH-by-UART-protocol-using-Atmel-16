@@ -1,0 +1,2 @@
+# Interface keypad with LED-BARGRAPH by UART protocol using Atmel 16
+ Universal Asynchronous Serial Transmission (UART) is one of the simplest ways to allow your microcontroller to communicate with a computer or another chip. Implementing UART in assembly is quite simple and can be done with the instructions we've seen so far. Here we will look at writing UART routines for the ATmega328P. The proccess is the same for all AVR chips, but some of the register names may need to be modified.
