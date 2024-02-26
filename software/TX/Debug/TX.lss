@@ -1,0 +1,302 @@
+
+TX.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001cc  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000220  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000220  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000250  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000088  00000000  00000000  0000028c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000009cb  00000000  00000000  00000314  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000076e  00000000  00000000  00000cdf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000005c9  00000000  00000000  0000144d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000e8  00000000  00000000  00001a18  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000492  00000000  00000000  00001b00  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002a8  00000000  00000000  00001f92  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000058  00000000  00000000  0000223a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 91 00 	call	0x122	; 0x122 <main>
+  64:	0c 94 e4 00 	jmp	0x1c8	; 0x1c8 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <keypad>:
+  6c:	8e ef       	ldi	r24, 0xFE	; 254
+  6e:	8b bb       	out	0x1b, r24	; 27
+  70:	cc 9b       	sbis	0x19, 4	; 25
+  72:	1e c0       	rjmp	.+60     	; 0xb0 <keypad+0x44>
+  74:	cd 9b       	sbis	0x19, 5	; 25
+  76:	1e c0       	rjmp	.+60     	; 0xb4 <keypad+0x48>
+  78:	ce 9b       	sbis	0x19, 6	; 25
+  7a:	1e c0       	rjmp	.+60     	; 0xb8 <keypad+0x4c>
+  7c:	8d ef       	ldi	r24, 0xFD	; 253
+  7e:	8b bb       	out	0x1b, r24	; 27
+  80:	cc 9b       	sbis	0x19, 4	; 25
+  82:	1c c0       	rjmp	.+56     	; 0xbc <keypad+0x50>
+  84:	cd 9b       	sbis	0x19, 5	; 25
+  86:	1c c0       	rjmp	.+56     	; 0xc0 <keypad+0x54>
+  88:	ce 9b       	sbis	0x19, 6	; 25
+  8a:	1c c0       	rjmp	.+56     	; 0xc4 <keypad+0x58>
+  8c:	8b e7       	ldi	r24, 0x7B	; 123
+  8e:	8b bb       	out	0x1b, r24	; 27
+  90:	cc 9b       	sbis	0x19, 4	; 25
+  92:	1a c0       	rjmp	.+52     	; 0xc8 <keypad+0x5c>
+  94:	cd 9b       	sbis	0x19, 5	; 25
+  96:	1a c0       	rjmp	.+52     	; 0xcc <keypad+0x60>
+  98:	ce 9b       	sbis	0x19, 6	; 25
+  9a:	1a c0       	rjmp	.+52     	; 0xd0 <keypad+0x64>
+  9c:	87 ef       	ldi	r24, 0xF7	; 247
+  9e:	8b bb       	out	0x1b, r24	; 27
+  a0:	cc 9b       	sbis	0x19, 4	; 25
+  a2:	18 c0       	rjmp	.+48     	; 0xd4 <keypad+0x68>
+  a4:	cd 9b       	sbis	0x19, 5	; 25
+  a6:	18 c0       	rjmp	.+48     	; 0xd8 <keypad+0x6c>
+  a8:	ce 99       	sbic	0x19, 6	; 25
+  aa:	18 c0       	rjmp	.+48     	; 0xdc <keypad+0x70>
+  ac:	83 e2       	ldi	r24, 0x23	; 35
+  ae:	08 95       	ret
+  b0:	81 e3       	ldi	r24, 0x31	; 49
+  b2:	08 95       	ret
+  b4:	82 e3       	ldi	r24, 0x32	; 50
+  b6:	08 95       	ret
+  b8:	83 e3       	ldi	r24, 0x33	; 51
+  ba:	08 95       	ret
+  bc:	84 e3       	ldi	r24, 0x34	; 52
+  be:	08 95       	ret
+  c0:	85 e3       	ldi	r24, 0x35	; 53
+  c2:	08 95       	ret
+  c4:	86 e3       	ldi	r24, 0x36	; 54
+  c6:	08 95       	ret
+  c8:	87 e3       	ldi	r24, 0x37	; 55
+  ca:	08 95       	ret
+  cc:	88 e3       	ldi	r24, 0x38	; 56
+  ce:	08 95       	ret
+  d0:	89 e3       	ldi	r24, 0x39	; 57
+  d2:	08 95       	ret
+  d4:	8a e2       	ldi	r24, 0x2A	; 42
+  d6:	08 95       	ret
+  d8:	80 e3       	ldi	r24, 0x30	; 48
+  da:	08 95       	ret
+  dc:	80 e0       	ldi	r24, 0x00	; 0
+  de:	08 95       	ret
+
+000000e0 <IMPLEMENT>:
+  e0:	9f e0       	ldi	r25, 0x0F	; 15
+  e2:	9a bb       	out	0x1a, r25	; 26
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e4:	ef e9       	ldi	r30, 0x9F	; 159
+  e6:	ff e0       	ldi	r31, 0x0F	; 15
+  e8:	31 97       	sbiw	r30, 0x01	; 1
+  ea:	f1 f7       	brne	.-4      	; 0xe8 <IMPLEMENT+0x8>
+  ec:	00 c0       	rjmp	.+0      	; 0xee <IMPLEMENT+0xe>
+  ee:	00 00       	nop
+  f0:	20 ef       	ldi	r18, 0xF0	; 240
+  f2:	2b bb       	out	0x1b, r18	; 27
+  f4:	ef e9       	ldi	r30, 0x9F	; 159
+  f6:	ff e0       	ldi	r31, 0x0F	; 15
+  f8:	31 97       	sbiw	r30, 0x01	; 1
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <IMPLEMENT+0x18>
+  fc:	00 c0       	rjmp	.+0      	; 0xfe <IMPLEMENT+0x1e>
+  fe:	00 00       	nop
+ 100:	9b bb       	out	0x1b, r25	; 27
+ 102:	ff e7       	ldi	r31, 0x7F	; 127
+ 104:	28 e3       	ldi	r18, 0x38	; 56
+ 106:	31 e0       	ldi	r19, 0x01	; 1
+ 108:	f1 50       	subi	r31, 0x01	; 1
+ 10a:	20 40       	sbci	r18, 0x00	; 0
+ 10c:	30 40       	sbci	r19, 0x00	; 0
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <IMPLEMENT+0x28>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <IMPLEMENT+0x32>
+ 112:	00 00       	nop
+ 114:	99 b3       	in	r25, 0x19	; 25
+ 116:	90 3f       	cpi	r25, 0xF0	; 240
+ 118:	11 f0       	breq	.+4      	; 0x11e <IMPLEMENT+0x3e>
+ 11a:	0e 94 36 00 	call	0x6c	; 0x6c <keypad>
+ 11e:	90 e0       	ldi	r25, 0x00	; 0
+ 120:	08 95       	ret
+
+00000122 <main>:
+#include "MACROS.h"
+#include "DIO.h"
+#include "UART.h"
+int main(void)
+{
+	UART_init();
+ 122:	0e 94 d6 00 	call	0x1ac	; 0x1ac <UART_init>
+    /* Replace with your application code */
+DDRC=0xFF;
+ 126:	8f ef       	ldi	r24, 0xFF	; 255
+ 128:	84 bb       	out	0x14, r24	; 20
+	 PORTC=0x00;
+ 12a:	15 ba       	out	0x15, r1	; 21
+    while (1) 
+    {
+	int	value=IMPLEMENT();
+ 12c:	0e 94 70 00 	call	0xe0	; 0xe0 <IMPLEMENT>
+	if(value=='1')
+ 130:	81 33       	cpi	r24, 0x31	; 49
+ 132:	91 05       	cpc	r25, r1
+ 134:	21 f4       	brne	.+8      	; 0x13e <main+0x1c>
+	{
+		UART_sendByte('1');
+ 136:	81 e3       	ldi	r24, 0x31	; 49
+ 138:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 13c:	f7 cf       	rjmp	.-18     	; 0x12c <main+0xa>
+    }
+	else if(value=='2')
+ 13e:	82 33       	cpi	r24, 0x32	; 50
+ 140:	91 05       	cpc	r25, r1
+ 142:	21 f4       	brne	.+8      	; 0x14c <main+0x2a>
+	{
+		UART_sendByte('2');
+ 144:	82 e3       	ldi	r24, 0x32	; 50
+ 146:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 14a:	f0 cf       	rjmp	.-32     	; 0x12c <main+0xa>
+}
+	else if(value=='3')
+ 14c:	83 33       	cpi	r24, 0x33	; 51
+ 14e:	91 05       	cpc	r25, r1
+ 150:	21 f4       	brne	.+8      	; 0x15a <main+0x38>
+	{
+		UART_sendByte('3');
+ 152:	83 e3       	ldi	r24, 0x33	; 51
+ 154:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 158:	e9 cf       	rjmp	.-46     	; 0x12c <main+0xa>
+	}
+		else if(value=='4')
+ 15a:	84 33       	cpi	r24, 0x34	; 52
+ 15c:	91 05       	cpc	r25, r1
+ 15e:	21 f4       	brne	.+8      	; 0x168 <main+0x46>
+		{
+			UART_sendByte('4');
+ 160:	84 e3       	ldi	r24, 0x34	; 52
+ 162:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 166:	e2 cf       	rjmp	.-60     	; 0x12c <main+0xa>
+
+		}
+			else if(value=='5')
+ 168:	85 33       	cpi	r24, 0x35	; 53
+ 16a:	91 05       	cpc	r25, r1
+ 16c:	21 f4       	brne	.+8      	; 0x176 <main+0x54>
+			{
+				UART_sendByte('5');
+ 16e:	85 e3       	ldi	r24, 0x35	; 53
+ 170:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 174:	db cf       	rjmp	.-74     	; 0x12c <main+0xa>
+			}
+				else if(value=='6')
+ 176:	86 33       	cpi	r24, 0x36	; 54
+ 178:	91 05       	cpc	r25, r1
+ 17a:	21 f4       	brne	.+8      	; 0x184 <main+0x62>
+				{
+					UART_sendByte('6');
+ 17c:	86 e3       	ldi	r24, 0x36	; 54
+ 17e:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 182:	d4 cf       	rjmp	.-88     	; 0x12c <main+0xa>
+
+				}
+					else if(value=='7')
+ 184:	87 33       	cpi	r24, 0x37	; 55
+ 186:	91 05       	cpc	r25, r1
+ 188:	21 f4       	brne	.+8      	; 0x192 <main+0x70>
+					{
+						UART_sendByte('7');
+ 18a:	87 e3       	ldi	r24, 0x37	; 55
+ 18c:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 190:	cd cf       	rjmp	.-102    	; 0x12c <main+0xa>
+					}
+						else if(value=='8')
+ 192:	88 33       	cpi	r24, 0x38	; 56
+ 194:	91 05       	cpc	r25, r1
+ 196:	21 f4       	brne	.+8      	; 0x1a0 <main+0x7e>
+						{
+							UART_sendByte('8');
+ 198:	88 e3       	ldi	r24, 0x38	; 56
+ 19a:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 19e:	c6 cf       	rjmp	.-116    	; 0x12c <main+0xa>
+			
+						}
+						
+						else if (value =='0')
+ 1a0:	c0 97       	sbiw	r24, 0x30	; 48
+ 1a2:	21 f6       	brne	.-120    	; 0x12c <main+0xa>
+						{
+							UART_sendByte('0');
+ 1a4:	80 e3       	ldi	r24, 0x30	; 48
+ 1a6:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <UART_sendByte>
+ 1aa:	c0 cf       	rjmp	.-128    	; 0x12c <main+0xa>
+
+000001ac <UART_init>:
+ 1ac:	8b b1       	in	r24, 0x0b	; 11
+ 1ae:	82 60       	ori	r24, 0x02	; 2
+ 1b0:	8b b9       	out	0x0b, r24	; 11
+ 1b2:	88 e1       	ldi	r24, 0x18	; 24
+ 1b4:	8a b9       	out	0x0a, r24	; 10
+ 1b6:	86 e8       	ldi	r24, 0x86	; 134
+ 1b8:	80 bd       	out	0x20, r24	; 32
+ 1ba:	8c e0       	ldi	r24, 0x0C	; 12
+ 1bc:	89 b9       	out	0x09, r24	; 9
+ 1be:	08 95       	ret
+
+000001c0 <UART_sendByte>:
+ 1c0:	5d 9b       	sbis	0x0b, 5	; 11
+ 1c2:	fe cf       	rjmp	.-4      	; 0x1c0 <UART_sendByte>
+ 1c4:	8c b9       	out	0x0c, r24	; 12
+ 1c6:	08 95       	ret
+
+000001c8 <_exit>:
+ 1c8:	f8 94       	cli
+
+000001ca <__stop_program>:
+ 1ca:	ff cf       	rjmp	.-2      	; 0x1ca <__stop_program>
